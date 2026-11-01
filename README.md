@@ -18,33 +18,33 @@ Beginner-friendly companion notes based on the [AWS from Basics to Advanced play
 
 ### IAM and networking
 
-- [AWS IAM Users Explained with Demo](05_IAM_Users_Explained.md)
-- [AWS IAM Policies & User Groups](06_IAM_Policies_and_User_Groups.md)
-- [AWS IAM Roles Explained](07_IAM_Roles_Explained.md)
-- [AWS Networking (Part 1): Fundamentals](08_Networking_Fundamentals.md)
-- [AWS Networking (Part 2): VPC, Subnets, NAT, IGW & Route Tables](09_VPC_Subnet_IGW_NAT_Route_Tables.md)
-- [AWS Networking (Part 3): Security Groups and NACLs](10_Security_Groups_and_NACLs.md)
+- [AWS IAM Users Explained with Demo](IAM_Users_Explained.md)
+- [AWS IAM Policies & User Groups](IAM_Policies_and_User_Groups.md)
+- [AWS IAM Roles Explained](IAM_Roles_Explained.md)
+- [AWS Networking (Part 1): Fundamentals](Networking_Fundamentals.md)
+- [AWS Networking (Part 2): VPC, Subnets, NAT, IGW & Route Tables](VPC_Subnet_IGW_NAT_Route_Tables.md)
+- [AWS Networking (Part 3): Security Groups and NACLs](Security_Groups_and_NACLs.md)
 
 ### Terraform and compute
 
-- [Terraform Architecture & Core Blocks](11_Terraform_Architecture_and_Core_Blocks.md)
-- [Terraform Hands-on: AWS Networking](12_Terraform_AWS_Networking_Hands_On.md)
-- [EC2: AMI, Instance Types, Keys & Launch](13_EC2_AMI_Instance_Types_and_Launch.md)
-- [Deploy Spring Boot Application on EC2](14_Deploy_Spring_Boot_on_EC2.md)
-- [EC2 Auto Scaling Groups](15_EC2_Auto_Scaling_Groups.md)
-- [Application Load Balancer with EC2 and ASG](16_Application_Load_Balancer_EC2_ASG.md)
+- [Terraform Architecture & Core Blocks](Terraform_Architecture_and_Core_Blocks.md)
+- [Terraform Hands-on: AWS Networking](Terraform_AWS_Networking_Hands_On.md)
+- [EC2: AMI, Instance Types, Keys & Launch](EC2_AMI_Instance_Types_and_Launch.md)
+- [Deploy Spring Boot Application on EC2](Deploy_Spring_Boot_on_EC2.md)
+- [EC2 Auto Scaling Groups](EC2_Auto_Scaling_Groups.md)
+- [Application Load Balancer with EC2 and ASG](Application_Load_Balancer_EC2_ASG.md)
 
 ### Storage, CDN and messaging
 
-- [Elastic Block Store (EBS)](17_Elastic_Block_Store_EBS.md)
-- [S3 Part 1: Architecture](18_S3_Part_1_Architecture.md)
-- [S3 Part 2: Spring Boot Integration & Authentication](19_S3_Part_2_Spring_Boot_Integration.md)
-- [S3 Part 3: Upload, Multipart Upload & Download](20_S3_Part_3_Upload_Multipart_Download.md)
-- [S3 Part 4: Presigned URLs](21_S3_Part_4_Presigned_URLs.md)
-- [CloudFront Part 1: CDN Setup](22_CloudFront_Part_1_Setup.md)
-- [CloudFront Part 2: Advanced Setup](23_CloudFront_Part_2_Advanced_Setup.md)
-- [Simple Queue Service (SQS)](24_SQS_Simple_Queue_Service.md)
-- [Simple Notification Service (SNS)](25_SNS_Simple_Notification_Service.md)
+- [Elastic Block Store (EBS)](Elastic_Block_Store_EBS.md)
+- [S3 Part 1: Architecture](S3_Part_1_Architecture.md)
+- [S3 Part 2: Spring Boot Integration & Authentication](S3_Part_2_Spring_Boot_Integration.md)
+- [S3 Part 3: Upload, Multipart Upload & Download](S3_Part_3_Upload_Multipart_Download.md)
+- [S3 Part 4: Presigned URLs](S3_Part_4_Presigned_URLs.md)
+- [CloudFront Part 1: CDN Setup](CloudFront_Part_1_Setup.md)
+- [CloudFront Part 2: Advanced Setup](CloudFront_Part_2_Advanced_Setup.md)
+- [Simple Queue Service (SQS)](SQS_Simple_Queue_Service.md)
+- [Simple Notification Service (SNS)](SNS_Simple_Notification_Service.md)
 
 ## How to use these notes
 
