@@ -8,6 +8,7 @@ A beginner-friendly AWS learning repository with original explanations, practica
 
 1. [AWS Account Setup & Cloud Computing Models (IaaS, PaaS, CaaS, FaaS, SaaS)](AWS_Account_Setup_and_Cloud_Service_Models.md) — Create and secure an AWS account, understand cloud service models, and map them to AWS services.
 2. [AWS Global Infrastructure (Part 1): Regions, Availability Zones, Local Zones & Edge](AWS_Global_Infrastructure_Part_1_Regions_AZs_Local_Zones_Edge.md) — Region selection, multi-AZ resilience, regional and zonal resources, Local Zones, CloudFront edge caching and interview practice.
+3. [AWS Global Infrastructure (Part 2): Disaster Recovery Strategies](AWS_Global_Infrastructure_Part_2_Disaster_Recovery_Strategies.md) — RTO and RPO, backup and restore, pilot light, warm standby, active/active, failover and recovery testing.
 
 ## How to use these notes
 
