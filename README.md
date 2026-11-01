@@ -6,9 +6,9 @@ A beginner-friendly AWS learning repository with original explanations, practica
 
 ## Study Guides
 
-Companion notes for the [25-video AWS from Basics to Advanced playlist](https://www.youtube.com/playlist?list=PL6W8uoQQ2c60g3PAgzVPpi0YWwxITD43p) by Concept && Coding – by Shrayansh. **Video 1 (AWS Roadmap)** is a brief course introduction; the detailed repository notes begin at Video 2.
+Beginner-friendly companion notes based on the [AWS from Basics to Advanced playlist](https://www.youtube.com/playlist?list=PL6W8uoQQ2c60g3PAgzVPpi0YWwxITD43p) by Concept && Coding – by Shrayansh.
 
-**Scope:** Lesson titles and order follow the playlist. Full video transcripts were not accessible for the newly created videos 5–25, so these are **independently written topic-based study companions**, not verbatim summaries. Always use [official AWS documentation](https://docs.aws.amazon.com/) for current service configuration, pricing and security guidance.
+**Scope:** Topics follow the playlist. Full video transcripts were not accessible for several lessons, so these are **independently written topic-based study companions**, not verbatim summaries. Always use [official AWS documentation](https://docs.aws.amazon.com/) for current service configuration, pricing and security guidance.
 
 ### Foundations and global infrastructure
 
