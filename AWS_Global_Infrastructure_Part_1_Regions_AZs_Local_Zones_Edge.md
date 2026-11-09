@@ -46,8 +46,6 @@ flowchart TD
 
 **Simple distinction:** A **Region** is where you choose a broad geographic home for an application. **Availability Zones** help the application survive local failures. **Local Zones** put selected workloads closer to certain cities. **Edge locations** help deliver content and networking services close to users.
 
-> This is an independently written study companion for lesson 3 of the AWS course, not a word-for-word video transcript. AWS-specific facts were checked against the official documentation linked at the end.
-
 ---
 
 ## 2. Region: the main geographic location
