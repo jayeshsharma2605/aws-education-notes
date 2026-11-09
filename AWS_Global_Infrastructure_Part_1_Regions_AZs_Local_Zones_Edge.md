@@ -4,8 +4,6 @@
 
 **Lesson 3 · AWS from Basics to Advanced** | A beginner-friendly guide with practical analogies, architecture diagrams, cost-conscious exercises and interview questions.
 
-> Original study notes inspired by the public topic and verified against official AWS documentation (November 2026). The full spoken transcript was not available; these notes are not claimed to be a verbatim summary of the instructor's video.
-
 ## Contents
 
 - [1. What is AWS Global Infrastructure?](#1-what-is-aws-global-infrastructure)
