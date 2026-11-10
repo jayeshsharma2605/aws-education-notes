@@ -4,8 +4,6 @@
 
 **Lesson 4 · AWS from Basics to Advanced** — Backup and Restore, Pilot Light, Warm Standby, Multi-Site Active/Active, RTO, RPO, failure recovery, and interview examples.
 
-> An original learning companion based on the identified video topic and current official AWS guidance. The full spoken transcript of the video was not accessible, so this guide does not claim to reproduce its detailed lesson content.
-
 ## Contents
 
 - [1. What is Disaster Recovery (DR)?](#1-what-is-disaster-recovery-dr)
