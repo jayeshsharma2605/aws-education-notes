@@ -250,9 +250,21 @@ Caches may satisfy a lookup without repeating the full hierarchy. DNS resolution
 
 ### DNS in AWS
 
-Amazon Route 53 is AWS's DNS service. It supports public and private hosted zones and routing policies such as simple, weighted, latency-based and failover routing.
+**Amazon Route 53** is AWS's DNS service. It translates domain names (such as `www.example.com`) into IP addresses.
 
-A **private hosted zone** is associated with VPCs and resolves names within the associated private DNS context. A public hosted zone serves DNS records for Internet-facing domain names.
+It supports two main types of hosted zones:
+
+- **Public hosted zone:** Used for domain names that people access over the Internet.
+- **Private hosted zone:** Used for internal names that are resolved within the VPCs associated with that hosted zone.
+
+**Easy example:**
+
+- Public: A customer enters `www.example.com` in a browser. Route 53 can return the public address of the website.
+- Private: An application inside a VPC looks up `database.internal` to find the private address of its database.
+
+Route 53 also supports routing choices such as **weighted** (split traffic), **latency-based** (send users to a low-latency endpoint) and **failover** (use a backup endpoint when the primary is unhealthy).
+
+**Remember:** Public hosted zone = Internet-facing names. Private hosted zone = internal VPC names.
 
 ## 7. TCP, UDP and ports
 
