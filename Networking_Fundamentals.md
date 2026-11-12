@@ -83,6 +83,8 @@ The three commonly used private IPv4 ranges are:
 | 172.16.0.0 – 172.31.255.255 | 172.16.0.0/12 | Medium private networks |
 | 192.168.0.0 – 192.168.255.255 | 192.168.0.0/16 | Home and office networks |
 
+**Easy example:** A public-facing website or load balancer may need a public endpoint so customers can reach it. Its application servers and database can use private IP addresses inside the VPC.
+
 A private IP does not automatically make a resource secure. Routing, security groups, network ACLs and application authentication still matter.
 
 ### IPv4 vs IPv6
@@ -108,9 +110,21 @@ Example: **10.0.1.0/24**
 | 10.0.1.0/24 | 8 | 256 |
 | 10.0.1.0/25 | 7 | 128 |
 | 10.0.1.0/26 | 6 | 64 |
+| 10.0.1.0/27 | 5 | 32 |
 | 10.0.1.0/28 | 4 | 16 |
 
-Each time the prefix increases by 1, the address count is halved: /24 gives 256, /25 gives 128, and /26 gives 64.
+**Interview shortcut:**
+
+**Total IPv4 addresses = 2^(32 - prefix length)**
+
+For example:
+- /24: 2^(32 - 24) = 2^8 = **256** addresses.
+- /26: 2^(32 - 26) = 2^6 = **64** addresses.
+- /28: 2^(32 - 28) = 2^4 = **16** addresses.
+
+Each time the prefix increases by 1, the address count is halved: /24 gives 256, /25 gives 128, /26 gives 64 and /27 gives 32.
+
+**Memory rule:** A larger prefix means a smaller subnet. A /24 is larger than a /26.
 
 ### AWS subnet calculation: important difference
 
@@ -125,20 +139,56 @@ For a /26:
 - Total = 2^6 = 64
 - Available in an AWS subnet = 64 - 5 = **59**
 
-Do not confuse the mathematical address count with the addresses available for resource assignment in an AWS subnet.
+AWS reserves the first four IPv4 addresses and the last IPv4 address in every IPv4 subnet. For example, in 10.0.1.0/24, the reserved addresses are 10.0.1.0, 10.0.1.1, 10.0.1.2, 10.0.1.3 and 10.0.1.255. These reservations support VPC networking functions such as the network address, VPC router, DNS and future use.
+
+| Subnet size | Total addresses | AWS-reserved | Available to resources |
+|---|---:|---:|---:|
+| /24 | 256 | 5 | 251 |
+| /25 | 128 | 5 | 123 |
+| /26 | 64 | 5 | 59 |
+| /27 | 32 | 5 | 27 |
+| /28 | 16 | 5 | 11 |
+
+AWS IPv4 subnets have a minimum size of /28. Always distinguish the mathematical address count from the addresses available for resource assignment in an AWS subnet.
 
 ### Example VPC address plan
 
-Suppose an application needs two Availability Zones, with one public subnet and one private subnet in each zone. A VPC such as 10.0.0.0/16 leaves room for growth.
+Suppose an application needs two Availability Zones, with public subnets for an internet-facing load balancer, private application subnets and a separate private database tier. A VPC such as 10.0.0.0/16 leaves room for growth.
 
 | Subnet | CIDR | Purpose |
 |---|---|---|
-| Public AZ-A | 10.0.1.0/24 | Internet-facing load balancer |
-| Private AZ-A | 10.0.11.0/24 | Application servers |
-| Public AZ-B | 10.0.2.0/24 | Internet-facing load balancer |
-| Private AZ-B | 10.0.12.0/24 | Application servers |
+| Public AZ-A | 10.0.1.0/24 | Internet-facing load balancer / NAT Gateway |
+| Public AZ-B | 10.0.2.0/24 | Internet-facing load balancer / NAT Gateway |
+| Private App AZ-A | 10.0.11.0/24 | Application servers |
+| Private App AZ-B | 10.0.12.0/24 | Application servers |
+| Private DB AZ-A | 10.0.21.0/24 | Database tier |
+| Private DB AZ-B | 10.0.22.0/24 | Database tier |
 
-Avoid overlapping CIDR ranges when planning networks that may later be connected using VPC peering, Transit Gateway or VPN.
+~~~mermaid
+flowchart TB
+  VPC["VPC: 10.0.0.0/16"]
+  VPC --> AZA["Availability Zone A"]
+  VPC --> AZB["Availability Zone B"]
+  AZA --> PA["Public: 10.0.1.0/24"]
+  AZA --> AA["Private App: 10.0.11.0/24"]
+  AZA --> DA["Private DB: 10.0.21.0/24"]
+  AZB --> PB["Public: 10.0.2.0/24"]
+  AZB --> AB["Private App: 10.0.12.0/24"]
+  AZB --> DB["Private DB: 10.0.22.0/24"]
+~~~
+
+**Why separate subnets?**
+1. **Security and isolation:** Apply different route tables and network ACL policies to public, application and database tiers.
+2. **Availability:** Place resources across multiple AZs so an AZ disruption does not take down the entire application.
+3. **Management and growth:** Allocate address space by tier and leave unused ranges for future services.
+
+**VPC planning rules:**
+- Every subnet CIDR must be contained within the VPC CIDR.
+- Subnet CIDRs in the same VPC must not overlap.
+- Estimate resource counts and leave room for scaling, replacement resources and managed services.
+- Use multiple AZs for production high availability.
+- Keep application and database resources private unless a specific requirement justifies public exposure.
+- Avoid overlapping CIDRs with networks you may later connect through VPC peering, Transit Gateway or VPN.
 
 ## 5. OSI and TCP/IP models
 
@@ -482,10 +532,10 @@ Before creating resources, draw and review this small design:
 
 - One VPC: **10.0.0.0/16**.
 - Two Availability Zones.
-- One public subnet and one private subnet per AZ.
+- One public, one private application and one private database subnet per AZ.
 - A public load balancer across the public subnets.
-- Application instances in the private subnets.
-- A database that is not publicly accessible.
+- Application instances in the private application subnets.
+- A database tier in private database subnets, not publicly accessible.
 - Explicit security group rules for each application-to-application connection.
 
 ### Suggested traffic rules
@@ -562,7 +612,8 @@ Flow Logs showing rejected traffic are useful evidence, but Flow Logs do not cap
 
 1. What is an IP address? How are public and private IP addresses different?
 2. What does 10.0.0.0/16 mean? How many IPv4 addresses does it contain?
-3. How many addresses are available for resources in an AWS /24 subnet?
+3. How do you calculate the number of addresses in a CIDR block?
+4. How many addresses are available for resources in AWS /24, /26 and /28 subnets?
 4. What is the difference between a VPC and a subnet?
 5. What makes a subnet public or private in AWS?
 6. What is the role of an Internet Gateway?
@@ -583,7 +634,10 @@ Flow Logs showing rejected traffic are useful evidence, but Flow Logs do not cap
 | Term | Remember it as |
 |---|---|
 | IP address | Address of a network interface |
-| CIDR | Network prefix and address range |
+| CIDR | Network prefix and address range; total IPv4 addresses = 2^(32 - prefix) |
+| /24 | 256 total IPv4 addresses; 251 available in an AWS subnet |
+| /26 | 64 total IPv4 addresses; 59 available in an AWS subnet |
+| AWS subnet reservation | Five IPv4 addresses per subnet |
 | Subnet | Smaller IP range inside a VPC |
 | DNS | Name-to-record lookup |
 | TCP | Reliable, ordered byte stream |
