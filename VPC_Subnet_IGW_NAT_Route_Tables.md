@@ -2,7 +2,6 @@
 
 *AWS Education Notes · Author: Jayesh Sharma*
 
-> **Source and scope:** Video 9 of [AWS from Basics to Advanced](https://www.youtube.com/playlist?list=PL6W8uoQQ2c60g3PAgzVPpi0YWwxITD43p), Concept && Coding – by Shrayansh. Its playlist title and position are verified; the full spoken transcript was not available. This is an **original topic-based learning companion**, not a word-for-word or attributed summary of unseen video explanations. Verify production behavior against [official AWS documentation](https://docs.aws.amazon.com/).
 
 ## Contents
 - [1. The big picture](#1-the-big-picture)
