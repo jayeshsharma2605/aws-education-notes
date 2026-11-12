@@ -6,10 +6,6 @@ A beginner-friendly AWS learning repository with original explanations, practica
 
 ## Study Guides
 
-Beginner-friendly companion notes based on the [AWS from Basics to Advanced playlist](https://www.youtube.com/playlist?list=PL6W8uoQQ2c60g3PAgzVPpi0YWwxITD43p) by Concept && Coding – by Shrayansh.
-
-**Scope:** Topics follow the playlist. Full video transcripts were not accessible for several lessons, so these are **independently written topic-based study companions**, not verbatim summaries. Always use [official AWS documentation](https://docs.aws.amazon.com/) for current service configuration, pricing and security guidance.
-
 ### Foundations and global infrastructure
 
 - [AWS Account Setup & Cloud Computing Models](AWS_Account_Setup_and_Cloud_Service_Models.md) — Account security, IaaS, PaaS, CaaS, FaaS and SaaS.
