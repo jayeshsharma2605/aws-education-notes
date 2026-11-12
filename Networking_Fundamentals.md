@@ -425,6 +425,50 @@ flowchart TB
 
 This is a conceptual layout. A production design should consider NAT gateway placement per AZ, resilience, routing, cost and the specific load balancer architecture.
 
+### What exactly is a subnet?
+
+A **subnet (subnetwork)** is a smaller, separately defined IP address range inside a larger network. In AWS, a subnet is a range of IP addresses within a VPC.
+
+Think of the VPC as a large residential campus and its subnets as individual blocks inside that campus. The VPC provides the overall private network; each subnet gives a specific group of resources its own address range and network placement.
+
+**Example:**
+
+Suppose a VPC has the CIDR range **10.0.0.0/16**. You can divide that address space into smaller subnet ranges:
+
+- **10.0.1.0/24** — public subnet for an internet-facing load balancer.
+- **10.0.11.0/24** — private subnet for application servers.
+- **10.0.21.0/24** — private subnet for databases.
+
+Each /24 contains 256 IPv4 addresses mathematically. In an AWS IPv4 subnet, five addresses are reserved, leaving 251 addresses available for resources.
+
+~~~mermaid
+flowchart TB
+  VPC["VPC: 10.0.0.0/16"]
+  VPC --> PUB["Public subnet: 10.0.1.0/24"]
+  VPC --> APP["Private app subnet: 10.0.11.0/24"]
+  VPC --> DB["Private database subnet: 10.0.21.0/24"]
+  PUB --> LB["Load balancer"]
+  APP --> EC2["Application servers"]
+  DB --> RDS["Database"]
+~~~
+
+**Important AWS subnet characteristics:**
+
+1. **A subnet belongs to one VPC.** Its CIDR block must be within the VPC's CIDR range.
+2. **A subnet is created in one Availability Zone.** To support high availability, create corresponding subnets in multiple AZs.
+3. **Subnet CIDR ranges must not overlap** with other subnets in the same VPC.
+4. **A subnet uses a route table** to determine where traffic is sent. A subnet is commonly called public when its route table has a route to an Internet Gateway; otherwise, it is commonly private.
+5. **Subnetting helps organize and isolate resources.** Different tiers can have different routes and network ACL policies, while security groups control access to individual resources.
+
+**Why do we create multiple subnets?**
+
+- To separate public-facing resources from internal application and database resources.
+- To apply different routing and network access policies.
+- To distribute resources across Availability Zones for resilience.
+- To allocate IP address ranges in a manageable way and leave room for future growth.
+
+**Remember:** A subnet is an IP address range, not a security boundary by itself. Its routing and network controls determine how resources communicate. A private subnet does not automatically make its resources secure.
+
 ### Public subnet vs private subnet
 
 A subnet is commonly called **public** when its route table has a route to an Internet Gateway. A subnet is commonly called **private** when it does not have a direct route to an Internet Gateway.
