@@ -2,8 +2,6 @@
 
 *AWS Education Notes · Author: Jayesh Sharma*
 
-> **Learning companion:** This is an original, beginner-friendly study guide to core networking concepts used in AWS. It includes simple examples, calculations, architecture diagrams, a practical exercise and interview questions. Verify current service behavior, quotas and pricing in official AWS documentation before using a design in production.
-
 ## What you will learn
 
 - IP addresses, public/private IPv4 ranges and CIDR calculations.
